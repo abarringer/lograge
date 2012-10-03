@@ -5,7 +5,7 @@ module Lograge
   class RequestLogSubscriber < ActiveSupport::LogSubscriber
     def process_action(event)
       payload = event.payload
-      message = "#{payload[:method]} #{payload[:path]} format=#{extract_format(payload)} action=#{payload[:params]['controller']}##{payload[:params]['action']} time=#{Time.now.to_default_s}"
+      message = "#{payload[:method]} #{payload[:path]} format=#{extract_format(payload)} action=#{payload[:params]['controller']}##{payload[:params]['action']}"
       message << extract_status(payload)
       message << runtimes(event)
       message << location(event)
